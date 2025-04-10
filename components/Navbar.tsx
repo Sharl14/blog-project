@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import SignIn from "./sign-in";
-const navbar = () => {
+import SignOut from "./sign-out";
+import { auth } from "@/auth";
+const navbar = async () => {
+  const session = await auth();
   return (
     <nav className="py-5 flex items-center justify-between">
       <div className="flex items-center gap-6">
@@ -25,8 +28,8 @@ const navbar = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-4"></div>
-      <div>
+      <div className="flex items-center gap-4">
+        {session ? <SignOut /> : <SignIn />}
         <SignIn />
       </div>
     </nav>
