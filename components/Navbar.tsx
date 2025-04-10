@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import SignIn from "./sign-in";
 const navbar = () => {
   return (
     <nav className="py-5 flex items-center justify-between">
@@ -26,6 +26,9 @@ const navbar = () => {
       </div>
 
       <div className="flex items-center gap-4"></div>
+      <div>
+        <SignIn />
+      </div>
     </nav>
   );
 };
