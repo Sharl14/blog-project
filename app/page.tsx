@@ -1,5 +1,6 @@
 import React from "react";
 import { prisma } from "@/prisma/prisma";
+import BlogPostCard from "@/components/general/BlogPostCard";
 async function getData() {
   const data = await prisma.blogPost.findMany({
     select: {
@@ -10,6 +11,7 @@ async function getData() {
       authorImage: true,
       authorName: true,
       createdAt: true,
+      updatedAt: true,
     },
   });
   return data;
@@ -21,9 +23,7 @@ const Home = async () => {
       <h1 className="text-3xl font-bold tracking-tight mb-8">Latest Blog</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {blog.map((item) => (
-          <div key={item.id}>
-            <h2>{item.title}</h2>
-          </div>
+          <BlogPostCard data={item} key={item.id} />
         ))}
       </div>
     </div>
@@ -31,3 +31,4 @@ const Home = async () => {
 };
 
 export default Home;
+// import React from "react";
