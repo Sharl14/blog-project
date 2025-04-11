@@ -17,7 +17,7 @@ async function getData(): Promise<BlogPost[]> {
       authorImage: true,
       authorName: true,
       createdAt: true,
-      updatedAt: true,
+      updateAt: true,
     },
   });
   if (!data) return notFound();
