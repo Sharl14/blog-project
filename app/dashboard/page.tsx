@@ -2,11 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { prisma } from "@/prisma/prisma";
+import { auth } from "@/auth";
 import { notFound } from "next/navigation";
 
 import BlogPostCard from "@/components/general/BlogPostCard";
-import { BlogPost } from "@prisma/client";
-async function getData(): Promise<BlogPost[]> {
+
+// The return type should be inferred, or you can use `any` if necessary
+async function getData() {
   const data = await prisma.blogPost.findMany({
     select: {
       id: true,
@@ -14,8 +16,8 @@ async function getData(): Promise<BlogPost[]> {
       content: true,
       imageUrl: true,
       authorId: true,
-      authorImage: true,
       authorName: true,
+      authorImage: true,
       createdAt: true,
       updateAt: true,
     },
@@ -23,8 +25,8 @@ async function getData(): Promise<BlogPost[]> {
   if (!data) return notFound();
   return data;
 }
-const Dashboard = async () => {
-  const data = await getData();
+
+const Dashboard = ({ data }: { data: Awaited<ReturnType<typeof getData>> }) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -43,5 +45,10 @@ const Dashboard = async () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const data = await getData();
+  return { props: { data } };
+}
 
 export default Dashboard;
