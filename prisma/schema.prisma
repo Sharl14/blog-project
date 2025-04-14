@@ -25,5 +25,5 @@ model BlogPost {
   authorName  String
   authorImage String
   createdAt   DateTime @default(now())
-  updateAt   DateTime @updatedAt
+  updateAt   DateTime @updateAt
 }
