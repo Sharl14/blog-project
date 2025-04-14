@@ -10,7 +10,7 @@ interface blogPost {
     authorName: string;
     authorImage: string;
     createdAt: Date;
-    updateAt: Date;
+    updatedAt: Date;
   };
 }
 
