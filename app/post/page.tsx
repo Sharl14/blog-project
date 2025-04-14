@@ -1,5 +1,5 @@
 import React from "react";
-import { prisma } from "@/prisma/prisma";
+import { prisma } from "@/prisma/prisma"; // Import the Prisma Client instance
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
